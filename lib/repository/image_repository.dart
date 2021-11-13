@@ -2,17 +2,15 @@ import 'package:cubos_imdb/interface/image_interface.dart';
 import 'package:cubos_imdb/provider/image_provider.dart';
 
 class RepositoryImage implements InterfaceImage {
-  ProviderImage _provider = ProviderImage();
+  ProviderImage _providerMovie = ProviderImage();
 
   @override
-  Future<String?> getMovieUrlCover(String path) {
-    // TODO: implement getMovieUrlCover
-    throw UnimplementedError();
+  Future<String?> getMovieUrlCover(String coverPath) async {
+    return _providerMovie.getMovieUrlCover(coverPath);
   }
 
   @override
-  Future<String?> getMovieUrlPoster(String path) {
-    // TODO: implement getMovieUrlPoster
-    throw UnimplementedError();
+  Future<String?> getMovieUrlPoster(String posterPath) async {
+    return _providerMovie.getMovieUrlPoster(posterPath);
   }
 }

@@ -1,34 +1,48 @@
 import 'package:cubos_imdb/interface/movie_interface.dart';
+import 'package:dio/dio.dart';
 import 'package:dio/src/response.dart';
 
 class ProviderMovie implements InterfaceMovie {
+  var apiKey = "7e49e84a68cdbea10b67f65709d1bc64";
+  var baseUrl = "https://api.themoviedb.org";
+
+  var apiVersion = "3";
+  var page = 1;
+  var language = "pt-BR";
+
   @override
-  Future<Response?> getMovieDetailsByID(sendData) {
-    // TODO: implement getMovieDetailsByID
-    throw UnimplementedError();
+  Future<Response?> getMovieDetailsByID(sendData) async {
+    var query = "movie/${sendData["movieId"]}";
+    return await Dio().get(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
   }
 
   @override
-  Future<Response?> listCategories() {
-    // TODO: implement listCategories
-    throw UnimplementedError();
+  Future<Response?> listCategories() async {
+    var query = "genre/movie/list";
+    return await Dio().get(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
   }
 
   @override
-  Future<Response?> listCurrentTheatersMovie() {
-    // TODO: implement listCurrentTheatersMovie
-    throw UnimplementedError();
+  Future<Response?> listCurrentTheatersMovie() async {
+    var query = "movie/now_playing";
+
+    return await Dio().get(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
   }
 
   @override
-  Future<Response?> listDiscoverGenres(sendData) {
-    // TODO: implement listDiscoverGenres
-    throw UnimplementedError();
+  Future<Response?> listDiscoverGenres(sendData) async {
+    var query = "discover/movie";
+    return await Dio().get(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language&with_genres=${sendData["genresId"]}");
   }
 
   @override
-  Future<Response?> searchMovieWithQuery(sendData) {
-    // TODO: implement searchMovieWithQuery
-    throw UnimplementedError();
+  Future<Response?> searchMovieWithQuery(sendData) async {
+    var query = "search/movie";
+    return await Dio().get(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&query=${sendData["searchQuery"]}&page=$page&language=$language");
   }
 }

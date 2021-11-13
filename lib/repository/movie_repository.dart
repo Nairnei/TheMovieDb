@@ -7,31 +7,26 @@ class RepositoryMovie implements InterfaceMovie {
 
   @override
   Future<Response?> getMovieDetailsByID(sendData) {
-    // TODO: implement getMovieDetailsByID
-    throw UnimplementedError();
+    return _provider.getMovieDetailsByID(sendData);
   }
 
   @override
   Future<Response?> listCategories() {
-    // TODO: implement listCategories
-    throw UnimplementedError();
+    return _provider.listCategories();
   }
 
   @override
   Future<Response?> listCurrentTheatersMovie() {
-    // TODO: implement listCurrentTheatersMovie
-    throw UnimplementedError();
+    return _provider.listCurrentTheatersMovie();
   }
 
   @override
   Future<Response?> listDiscoverGenres(sendData) {
-    // TODO: implement listDiscoverGenres
-    throw UnimplementedError();
+    return _provider.listDiscoverGenres(sendData);
   }
 
   @override
   Future<Response?> searchMovieWithQuery(sendData) {
-    // TODO: implement searchMovieWithQuery
-    throw UnimplementedError();
+    return _provider.searchMovieWithQuery(sendData);
   }
 }

@@ -11,6 +11,14 @@ void main() {
 
   //--------------------- TheMovieDB API-----------------------------
 
+  ///get movie details by id
+  test("getMovieDetailsByID", () async {
+    var query = "movie/438631";
+    var response =
+        await Dio().get('$baseUrl/$apiVersion/$query?api_key=$apiKey');
+    expect(response.statusCode, 200);
+  });
+
   ///list tendency movie with paginate and language example
   test("listCategories", () async {
     var query = "genre/movie/list";
@@ -29,20 +37,7 @@ void main() {
 
   ///discover movies with genres
   test("listDiscoverGenres", () async {
-    var genreId = "16,28";
-    var query = "discover/movie";
-    var response = await Dio().get(
-        '$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language&with_genres=$genreId');
-    expect(response.statusCode, 200);
-  });
-
-  ///get movie details by id
-  test("getMovieDetailsByID", () async {
-    var query = "movie/438631";
-    var response =
-        await Dio().get('$baseUrl/$apiVersion/$query?api_key=$apiKey');
-    print(
-        '$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language');
+    var response = await Dio().get('movie_unit_test.dart');
     expect(response.statusCode, 200);
   });
 
