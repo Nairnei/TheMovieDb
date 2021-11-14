@@ -23,6 +23,7 @@ class DetailModel {
   dynamic video;
   dynamic voteAverage;
   dynamic voteCount;
+  Credits? credits;
 
   DetailModel(
       {this.adult,
@@ -48,7 +49,8 @@ class DetailModel {
       this.title,
       this.video,
       this.voteAverage,
-      this.voteCount});
+      this.voteCount,
+      this.credits});
 
   DetailModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -95,6 +97,8 @@ class DetailModel {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    credits =
+        json['credits'] != null ? new Credits.fromJson(json['credits']) : null;
   }
 }
 
@@ -147,5 +151,86 @@ class SpokenLanguages {
   SpokenLanguages.fromJson(Map<String, dynamic> json) {
     iso6391 = json['iso_639_1'];
     name = json['name'];
+  }
+}
+
+class Credits {
+  List<Cast?>? cast;
+  List<Crew?>? crew;
+
+  Credits({this.cast, this.crew});
+
+  Credits.fromJson(Map<String, dynamic> json) {
+    if (json['cast'] != null) {
+      cast = [];
+      json['cast'].forEach((v) {
+        cast!.add(new Cast.fromJson(v));
+      });
+    }
+    if (json['crew'] != null) {
+      crew = [];
+      json['crew'].forEach((v) {
+        crew!.add(new Crew.fromJson(v));
+      });
+    }
+  }
+}
+
+class Cast {
+  dynamic id;
+  dynamic knownForDepartment;
+  dynamic name;
+  dynamic originalName;
+  dynamic creditId;
+
+  Cast({
+    this.id,
+    this.knownForDepartment,
+    this.name,
+    this.originalName,
+    this.creditId,
+  });
+
+  Cast.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    knownForDepartment = json['known_for_department'];
+    name = json['name'];
+    originalName = json['original_name'];
+    creditId = json['credit_id'];
+  }
+}
+
+class Crew {
+  dynamic id;
+  dynamic knownForDepartment;
+  dynamic name;
+  dynamic originalName;
+  dynamic popularity;
+  dynamic profilePath;
+  dynamic creditId;
+  dynamic department;
+  dynamic job;
+
+  Crew(
+      {this.id,
+      this.knownForDepartment,
+      this.name,
+      this.originalName,
+      this.popularity,
+      this.profilePath,
+      this.creditId,
+      this.department,
+      this.job});
+
+  Crew.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    knownForDepartment = json['known_for_department'];
+    name = json['name'];
+    originalName = json['original_name'];
+    popularity = json['popularity'];
+    profilePath = json['profile_path'];
+    creditId = json['credit_id'];
+    department = json['department'];
+    job = json['job'];
   }
 }

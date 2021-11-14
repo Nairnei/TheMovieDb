@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cubos_imdb">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
         android:label="cubos_imdb"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -14,7 +14,7 @@ class ProviderMovie implements InterfaceMovie {
   Future<Response?> getMovieDetailsByID(sendData) async {
     var query = "movie/${sendData["movieId"]}";
     return await Dio().get(
-        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language&append_to_response=credits");
   }
 
   @override
@@ -25,18 +25,18 @@ class ProviderMovie implements InterfaceMovie {
   }
 
   @override
-  Future<Response?> listCurrentTheatersMovie() async {
+  Future<Response?> listCurrentTheatersMovie({int? nextPage}) async {
     var query = "movie/now_playing";
 
     return await Dio().get(
-        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=${nextPage ?? page}&language=$language");
   }
 
   @override
-  Future<Response?> listDiscoverGenres(sendData) async {
+  Future<Response?> listDiscoverGenres(sendData, {int? nextPage}) async {
     var query = "discover/movie";
     return await Dio().get(
-        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language&with_genres=${sendData["genresId"]}");
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=${nextPage ?? page}&language=$language&with_genres=${sendData["genresId"]}");
   }
 
   @override

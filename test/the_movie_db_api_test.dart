@@ -14,8 +14,10 @@ void main() {
   ///get movie details by id
   test("getMovieDetailsByID", () async {
     var query = "movie/438631";
-    var response =
-        await Dio().get('$baseUrl/$apiVersion/$query?api_key=$apiKey');
+    var response = await Dio().get(
+        '$baseUrl/$apiVersion/$query?api_key=$apiKey&append_to_response=credits');
+    print(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&append_to_response=credits");
     expect(response.statusCode, 200);
   });
 
