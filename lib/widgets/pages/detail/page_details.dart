@@ -283,33 +283,42 @@ class _DetailsState extends State<PageDetail>
   }
 
   buildCast(List<Cast?>? cast) {
-    String castNames = "";
-    cast!.forEach((element) {
-      castNames = castNames + element!.name + ", ";
-    });
+    try {
+      String castNames = "";
+      cast!.forEach((element) {
+        castNames = castNames + element!.name + ", ";
+      });
 
-    return Text(castNames.substring(
-          0,
-          castNames.length - 2,
-        ) +
-        ".");
+      return Text(castNames.substring(
+            0,
+            castNames.length - 2,
+          ) +
+          ".");
+    } catch (error) {
+      return Container();
+    }
   }
 
   buildCompanies(List<ProductionCompanies?>? productionCompanies) {
-    String companiesNames = "Produtoras: ";
-    productionCompanies!.forEach((element) {
-      companiesNames = companiesNames + element!.name + ", ";
-    });
+    try {
+      String companiesNames = "Produtoras: ";
+      productionCompanies!.forEach((element) {
+        companiesNames = companiesNames + element!.name + ", ";
+      });
 
-    return Padding(
-      ///aka figma
-      padding: const EdgeInsets.only(left: 16.0, bottom: 11, top: 9, right: 16),
-      child: Text(companiesNames.substring(
-            0,
-            companiesNames.length - 2,
-          ) +
-          "."),
-    );
+      return Padding(
+        ///aka figma
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 11, top: 9, right: 16),
+        child: Text(companiesNames.substring(
+              0,
+              companiesNames.length - 2,
+            ) +
+            "."),
+      );
+    } catch (error) {
+      return Container();
+    }
   }
 
   buildGenres() {

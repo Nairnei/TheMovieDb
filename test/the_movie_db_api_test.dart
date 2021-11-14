@@ -26,6 +26,8 @@ void main() {
     var query = "genre/movie/list";
     var response = await Dio().get(
         "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
+    print(
+        "$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language");
     expect(response.statusCode, 200);
   });
 
@@ -39,7 +41,10 @@ void main() {
 
   ///discover movies with genres
   test("listDiscoverGenres", () async {
-    var response = await Dio().get('movie_unit_test.dart');
+    var genreId = "16,28";
+    var query = "discover/movie";
+    var response = await Dio().get(
+        '$baseUrl/$apiVersion/$query?api_key=$apiKey&page=$page&language=$language&with_genres=$genreId');
     expect(response.statusCode, 200);
   });
 
