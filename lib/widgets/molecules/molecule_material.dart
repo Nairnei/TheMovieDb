@@ -1,5 +1,6 @@
 import 'package:cubos_imdb/model/movies_model.dart';
 import 'package:cubos_imdb/widgets/pages/detail/page_details.dart';
+import 'package:cubos_imdb/widgets/pages/home/page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ Widget buildMaterialRippleEffect(
       splashColor: Colors.white24,
       hoverColor: Colors.white12,
       onTap: () {
+        controllerHomePage.focusSearch.unfocus();
         Navigator.push(
             context,
             MaterialPageRoute(

@@ -7,6 +7,7 @@ final controllerHomePage = PageHomeController();
 class PageHomeController implements InterfacePageController {
   var gridViewController = ScrollController();
   TextEditingController controllerSearch = TextEditingController();
+  FocusNode focusSearch = FocusNode();
   var currentPage = 1;
 
   @override

@@ -4,8 +4,10 @@ import 'package:cubos_imdb/bloc/movie_stream.dart';
 import 'package:cubos_imdb/model/details_model.dart';
 import 'package:cubos_imdb/model/movies_model.dart';
 import 'package:cubos_imdb/widgets/molecules/molecule_card.dart';
+import 'package:cubos_imdb/widgets/molecules/molecule_details.dart';
 import 'package:cubos_imdb/widgets/pages/detail/page_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PageDetail extends StatefulWidget {
   final MoviesResults result;
@@ -29,12 +31,7 @@ class _DetailsState extends State<PageDetail>
   void initState() {
     super.initState();
     controllerDetailPage.init();
-    streamMovie
-        .getMovieDetailsByID({"movieId": widget.result.id}).then((value) => {
-              Future.delayed(Duration(milliseconds: 300), () {
-                controllerDetailPage.ready();
-              })
-            });
+    streamMovie.getMovieDetailsByID({"movieId": widget.result.id});
   }
 
   @override
@@ -47,7 +44,37 @@ class _DetailsState extends State<PageDetail>
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 24),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(100))),
+                      child: Container(
+                        width: 88,
+                        height: 40,
+                        child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.arrow_back_ios),
+                                  Text("Voltar"),
+                                ],
+                              ),
+                            )),
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -59,8 +86,20 @@ class _DetailsState extends State<PageDetail>
                   padding: const EdgeInsets.only(top: 32.0, bottom: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("${widget.result.voteAverage} / 10"),
+                      Text("${widget.result.voteAverage}",
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              color: Color(0xff00384C))),
+                      Text(
+                        " / 10",
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Color(0xff868E96)),
+                      )
                     ],
                   ),
                 ),
@@ -69,7 +108,13 @@ class _DetailsState extends State<PageDetail>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("${widget.result.title}"),
+                      Text(
+                        "${widget.result.title}",
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Color(0xff343A40)),
+                      ),
                     ],
                   ),
                 ),
@@ -78,7 +123,16 @@ class _DetailsState extends State<PageDetail>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("${widget.result.originalTitle}"),
+                      Text("Título original: ",
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                              color: Color(0xff5E6770))),
+                      Text("${widget.result.originalTitle}",
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10,
+                              color: Color(0xff5E6770))),
                     ],
                   ),
                 ),
@@ -104,14 +158,30 @@ class _DetailsState extends State<PageDetail>
                                       decoration: BoxDecoration(
                                         color: Color(0xffF1F3F5),
                                         borderRadius:
-                                            BorderRadius.circular(10.0),
+                                        BorderRadius.circular(10.0),
                                         // border: Border.all(
                                         //   width: 0.4,
                                         // ),
                                       ),
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Ano: "
-                                          "${widget.result.releaseDate.toString().split("-").first}"),
+                                      child: Row(
+                                        children: [
+                                          Text("Ano: ",
+                                              style: GoogleFonts.montserrat(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                  color: Color(0xff868E96))),
+                                          Text(
+                                              "${widget.result.releaseDate
+                                                  .toString()
+                                                  .split("-")
+                                                  .first}",
+                                              style: GoogleFonts.montserrat(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14,
+                                                  color: Color(0xff343A40))),
+                                        ],
+                                      ),
                                     ),
                                   ),
 
@@ -122,7 +192,7 @@ class _DetailsState extends State<PageDetail>
                                       decoration: BoxDecoration(
                                         color: Color(0xffF1F3F5),
                                         borderRadius:
-                                            BorderRadius.circular(10.0),
+                                        BorderRadius.circular(10.0),
                                         // border: Border.all(
                                         //   width: 0.4,
                                         // ),
@@ -143,15 +213,20 @@ class _DetailsState extends State<PageDetail>
                             buildGenres(),
                             Padding(
                               padding: const EdgeInsets.only(top: 56.0),
-                              child: Text("Descrição"),
+                              child: Text("Descrição",
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Color(0xff5E6770))),
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 20),
-                              child: Text(
-                                "${widget.result.overview}",
-                                style: TextStyle(color: Color(0xff343a40)),
-                              ),
+                              const EdgeInsets.only(top: 8.0, bottom: 20),
+                              child: Text("${widget.result.overview}",
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                      color: Color(0xff343A40))),
                             ),
 
                             Padding(
@@ -162,6 +237,7 @@ class _DetailsState extends State<PageDetail>
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Padding(
+
                                   ///aka figma
                                   padding: const EdgeInsets.only(
                                       left: 16.0,
@@ -170,8 +246,16 @@ class _DetailsState extends State<PageDetail>
                                       right: 16),
                                   child: Row(
                                     children: [
-                                      Text("Orçamento: " +
-                                          snapshot.data!.budget.toString()),
+                                      Text("Orçamento: ",
+                                          style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: Color(0xff868E96))),
+                                      Text(snapshot.data!.budget.toString(),
+                                          style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14,
+                                              color: Color(0xff343A40))),
                                     ],
                                   ),
                                 ),
@@ -198,7 +282,11 @@ class _DetailsState extends State<PageDetail>
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 40.0),
-                                  child: Text("Diretor"),
+                                  child: Text("Diretor",
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14,
+                                          color: Color(0xff5E6770))),
                                 ),
                               ],
                             ),
@@ -214,7 +302,11 @@ class _DetailsState extends State<PageDetail>
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
-                              child: Text("Elenco"),
+                              child: Text("Elenco",
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Color(0xff5E6770))),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 8, bottom: 32),
@@ -236,129 +328,7 @@ class _DetailsState extends State<PageDetail>
     );
   }
 
-  Text buildHourMoview(String runtime) {
-    int time = int.parse(runtime);
-
-    return Text("Duração: " + getTimeString(time));
-  }
-
-  String getTimeString(int value) {
-    final int hour = value ~/ 60;
-    final int minutes = value % 60;
-    return '${hour.toString().padLeft(
-          2,
-        )}h ${minutes.toString().padLeft(2, "0")}minutes';
-  }
-
-  Widget buildDetailPoster(MoviesResults result) {
-    return FutureBuilder(
-        future: streamImage.getMovieUrlPoster(result.posterPath ?? ""),
-        builder: (context, AsyncSnapshot<String?> snapshot) {
-          if (snapshot.connectionState != ConnectionState.waiting) {
-            return ClipRRect(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(32),
-                  bottomRight: Radius.circular(32)),
-              child: CachedNetworkImage(
-                imageUrl: snapshot.data!,
-                fit: BoxFit.fitWidth,
-              ),
-            );
-          } else {
-            return Center(
-              child: Container(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-        });
-  }
-
   @override
   bool get wantKeepAlive => true;
 
-  Widget buildDirector(List<Crew?>? crew) {
-    Crew? director = crew!.firstWhere((element) => element?.job == "Director");
-    return Text(director!.name ?? " - ");
-  }
-
-  buildCast(List<Cast?>? cast) {
-    try {
-      String castNames = "";
-      cast!.forEach((element) {
-        castNames = castNames + element!.name + ", ";
-      });
-
-      return Text(castNames.substring(
-            0,
-            castNames.length - 2,
-          ) +
-          ".");
-    } catch (error) {
-      return Container();
-    }
-  }
-
-  buildCompanies(List<ProductionCompanies?>? productionCompanies) {
-    try {
-      String companiesNames = "Produtoras: ";
-      productionCompanies!.forEach((element) {
-        companiesNames = companiesNames + element!.name + ", ";
-      });
-
-      return Padding(
-        ///aka figma
-        padding:
-            const EdgeInsets.only(left: 16.0, bottom: 11, top: 9, right: 16),
-        child: Text(companiesNames.substring(
-              0,
-              companiesNames.length - 2,
-            ) +
-            "."),
-      );
-    } catch (error) {
-      return Container();
-    }
-  }
-
-  buildGenres() {
-    try {
-      return Container(
-        height: 50,
-        child: StreamBuilder(
-            initialData: streamMovie.details.stream.value,
-            stream: streamMovie.details.stream,
-            builder: (context, AsyncSnapshot<DetailModel?> snapshot) {
-              return Center(
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                            width: 0.4,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Center(
-                              child: Text(snapshot.data!.genres[index]!.name)),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: snapshot.data!.genres.length,
-                ),
-              );
-            }),
-      );
-    } catch (error) {
-      return Container();
-    }
-  }
 }
