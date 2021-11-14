@@ -1,6 +1,6 @@
 import 'package:cubos_imdb/bloc/movie_stream.dart';
 import 'package:cubos_imdb/widgets/atoms/atom_gradient.dart';
-import 'package:cubos_imdb/widgets/pages/organism/organism_home.dart';
+import 'package:cubos_imdb/widgets/organism/organism_home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

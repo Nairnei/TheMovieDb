@@ -4,7 +4,7 @@ import 'package:cubos_imdb/model/movies_model.dart';
 import 'package:cubos_imdb/widgets/atoms/atom_gradient.dart';
 import 'package:cubos_imdb/widgets/molecules/molecule_card.dart';
 import 'package:cubos_imdb/widgets/molecules/molecule_material.dart';
-import 'package:cubos_imdb/widgets/pages/organism/organism_chip.dart';
+import 'package:cubos_imdb/widgets/organism/organism_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
