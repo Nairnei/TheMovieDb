@@ -57,7 +57,7 @@ class StreamMovie implements InterfaceMovie {
       _behaviorSubjectMoviesOnHome.sink
           .add(MoviesModel.fromJson(response!.data));
     } else {
-      var aux = MoviesModel.fromJson(response!.data);
+      MoviesModel aux = MoviesModel.fromJson(response!.data);
       _behaviorSubjectMoviesOnHome.value!.results!.addAll(aux.results!);
       _behaviorSubjectMoviesOnHome.value!.page = aux.page;
       _behaviorSubjectMoviesOnHome.sink.add(_behaviorSubjectMoviesOnHome.value);
@@ -101,18 +101,18 @@ class StreamMovie implements InterfaceMovie {
 
   String? getFilter() {
     String queryFilter = "";
-    var aux;
+    String filterAux = "";
     filters.forEach((element) {
       queryFilter = queryFilter + element + ",";
     });
 
     if (queryFilter.length > 1) {
-      aux = queryFilter.substring(
+      filterAux = queryFilter.substring(
         0,
         queryFilter.length - 1,
       );
     }
 
-    return aux;
+    return filterAux;
   }
 }
