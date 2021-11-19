@@ -17,6 +17,14 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    streamMovie.listCurrentTheatersMovie();
+    streamMovie.listCategories();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
