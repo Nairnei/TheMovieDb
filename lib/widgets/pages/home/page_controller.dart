@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 final controllerHomePage = PageHomeController();
 
 class PageHomeController implements InterfacePageController {
-  var gridViewController = ScrollController();
+  ScrollController gridViewController = ScrollController();
   TextEditingController controllerSearch = TextEditingController();
   FocusNode focusSearch = FocusNode();
-  var currentPage = 1;
+  int currentPage = 1;
 
   @override
   void init() {

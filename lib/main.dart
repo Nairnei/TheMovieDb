@@ -1,4 +1,3 @@
-import 'package:cubos_imdb/bloc/movie_stream.dart';
 import 'package:cubos_imdb/widgets/pages/home/page_home.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +14,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    streamMovie.listCurrentTheatersMovie();
-    streamMovie.listCategories();
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'CUBOS TMDB',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

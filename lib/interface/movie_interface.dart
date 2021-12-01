@@ -2,17 +2,17 @@ import 'package:dio/dio.dart';
 
 abstract class InterfaceMovie {
   ///list moview genres
-  Future<Response?> listCategories() async {}
+  listCategories() {}
 
   ///list movies on Theater now
-  Future<Response?> listCurrentTheatersMovie() async {}
+  Future<Response?> listCurrentTheatersMovie();
 
   ///Discover movies with genres
-  Future<Response?> listDiscoverGenres(var sendData) async {}
+  Future<Response?> listDiscoverGenres(Map<String, dynamic> sendData);
 
   ///get details of movie to show a more complete details screen
-  Future<Response?> getMovieDetailsByID(var sendData) async {}
+  Future<Response?> getMovieDetailsByID(Map<String, dynamic> sendData);
 
   ///search movie by query
-  Future<Response?> searchMovieWithQuery(var sendData) async {}
+  Future<Response?> searchMovieWithQuery(Map<String, dynamic> sendData);
 }
